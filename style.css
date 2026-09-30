@@ -877,3 +877,305 @@ button {
   }
 
 }
+
+/* =========================================
+   NEW MINIMAL CHOICE DESIGN
+   ========================================= */
+
+
+/* SERIF HEADINGS */
+
+h1,
+h2 {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-weight: 500;
+}
+
+
+/* =========================================
+   OPTION LIST
+   ========================================= */
+
+.option-list {
+  width: min(680px, 100%);
+
+  margin-top: 15px;
+
+  border-top:
+    1px solid var(--border);
+}
+
+
+.option {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    50px 1fr 35px;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    23px 5px;
+
+  border: none;
+
+  border-bottom:
+    1px solid var(--border);
+
+  background: transparent;
+
+  color: var(--cream);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    padding 0.3s ease,
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+
+.option .number {
+  color: #70666a;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+
+  transition:
+    color 0.3s ease;
+}
+
+
+.option strong {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 29px;
+
+  font-weight: 500;
+
+  letter-spacing: -0.015em;
+}
+
+
+.option .arrow {
+  color: var(--accent);
+
+  font-size: 21px;
+
+  opacity: 0;
+
+  transform:
+    translateX(-12px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* HOVER */
+
+.option:hover {
+  padding-left: 14px;
+
+  color: var(--accent-light);
+
+  background:
+    rgba(216, 139, 158, 0.025);
+}
+
+
+.option:hover .number {
+  color: var(--accent);
+}
+
+
+.option:hover .arrow {
+  opacity: 1;
+
+  transform:
+    translateX(0);
+}
+
+
+/* SELECTED */
+
+.option.selected {
+  padding-left: 14px;
+
+  color: var(--accent-light);
+
+  background:
+    rgba(216, 139, 158, 0.06);
+}
+
+
+.option.selected .number {
+  color: var(--accent);
+}
+
+
+.option.selected .arrow {
+  opacity: 1;
+
+  transform:
+    translateX(0);
+}
+
+
+/* =========================================
+   DATE PAGE
+   ========================================= */
+
+.date-submit {
+  margin-top: 30px;
+}
+
+
+/* =========================================
+   FINAL PAGE
+   ========================================= */
+
+.final-plan {
+  width: min(580px, 100%);
+
+  margin-top: 55px;
+
+  border-top:
+    1px solid var(--border);
+}
+
+
+.final-item {
+  display: grid;
+
+  grid-template-columns:
+    120px 1fr;
+
+  align-items: center;
+
+  padding:
+    18px 5px;
+
+  border-bottom:
+    1px solid var(--border);
+
+  text-align: left;
+}
+
+
+.final-item span {
+  color: var(--accent);
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.2em;
+}
+
+
+.final-item strong {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 25px;
+
+  font-weight: 500;
+}
+
+
+.final-message {
+  margin:
+    45px 0 5px;
+
+  color: var(--cream);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 24px;
+}
+
+
+.signature {
+  margin-top: 8px;
+
+  color: var(--accent);
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 20px;
+
+  font-style: italic;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+  .option-list {
+    width: 100%;
+  }
+
+
+  .option {
+    grid-template-columns:
+      35px 1fr 25px;
+
+    padding:
+      20px 3px;
+  }
+
+
+  .option strong {
+    font-size: 25px;
+  }
+
+
+  .option:hover {
+    padding-left: 8px;
+  }
+
+
+  .final-item {
+    grid-template-columns:
+      90px 1fr;
+  }
+
+
+  .final-item strong {
+    font-size: 22px;
+  }
+
+}
