@@ -1,47 +1,97 @@
+/* =========================================
+   DATE SITE — DARK / ROMANTIC THEME
+   ========================================= */
+
 :root {
-  --bg: #11100f;
-  --surface: #191716;
-  --surface-hover: #211e1d;
+  --bg: #100e0f;
+  --bg-soft: #181416;
+  --surface: #1c181a;
+  --surface-hover: #251f22;
 
-  --cream: #f4eee8;
-  --muted: #a99f99;
+  --cream: #f5efea;
+  --text: #f5efea;
+  --muted: #a99da1;
 
-  --accent: #d8899b;
-  --accent-dark: #a95e70;
+  --accent: #d88b9e;
+  --accent-light: #efb4c2;
+  --accent-dark: #a85e71;
 
-  --border: rgba(244, 238, 232, 0.12);
+  --border: rgba(245, 239, 234, 0.12);
+  --border-hover: rgba(216, 139, 158, 0.55);
 
-  --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
 }
+
+
+/* =========================================
+   RESET
+   ========================================= */
 
 * {
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
 
   background:
     radial-gradient(
-      circle at 50% -20%,
-      #302326 0%,
-      #171313 35%,
-      var(--bg) 70%
+      circle at 50% -10%,
+      #35252a 0%,
+      #1a1417 30%,
+      var(--bg) 65%
     );
 
-  color: var(--cream);
+  background-attachment: fixed;
 
-  font-family: "DM Sans", sans-serif;
+  color: var(--text);
+
+  font-family:
+    "DM Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  overflow-x: hidden;
 }
 
 
-/* PAGES */
+/* subtle grain / texture */
+
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.025;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.5'/%3E%3C/svg%3E");
+
+  z-index: 9999;
+}
+
+
+/* =========================================
+   PAGES
+   ========================================= */
 
 .page {
   display: none;
 
+  width: 100%;
   min-height: 100vh;
 
-  padding: 70px 8%;
+  padding: 80px 8%;
 
   flex-direction: column;
   align-items: center;
@@ -53,7 +103,8 @@ body {
 .page.active {
   display: flex;
 
-  animation: pageIn .55s
+  animation:
+    pageIn 0.7s
     cubic-bezier(.22, 1, .36, 1);
 }
 
@@ -62,7 +113,7 @@ body {
 
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
 
   to {
@@ -73,87 +124,132 @@ body {
 }
 
 
-/* TYPOGRAPHY */
+/* =========================================
+   TYPOGRAPHY
+   ========================================= */
 
 .eyebrow {
-  color: var(--pink);
+  margin: 0 0 22px;
 
-  font-size: 13px;
-  font-weight: 700;
+  color: var(--accent);
 
-  letter-spacing: .18em;
+  font-size: 11px;
+  font-weight: 600;
 
-  margin-bottom: 18px;
+  letter-spacing: 0.28em;
+
+  text-transform: uppercase;
+}
+
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
 }
 
 
 h1 {
-  margin: 0;
+  max-width: 1000px;
+
+  margin-bottom: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size:
-    clamp(3.2rem, 8vw, 6.8rem);
+    clamp(4rem, 9vw, 8rem);
 
-  line-height: .95;
+  font-weight: 400;
 
-  letter-spacing: -.06em;
+  line-height: 0.93;
+
+  letter-spacing: -0.055em;
 }
 
 
 h2 {
-  margin: 0;
+  max-width: 850px;
+
+  margin-bottom: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size:
-    clamp(2.7rem, 6vw, 5rem);
+    clamp(3.2rem, 7vw, 6rem);
 
-  letter-spacing: -.05em;
+  font-weight: 400;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.045em;
 }
 
 
 .subtitle {
+  max-width: 550px;
+
+  margin: 26px 0 42px;
+
   color: var(--muted);
 
-  font-size: 18px;
+  font-size: 17px;
 
-  margin: 22px 0 35px;
+  line-height: 1.7;
 }
 
 
-/* HEART */
+/* =========================================
+   HEART
+   ========================================= */
 
 .heart {
-  color: var(--pink);
+  margin-bottom: 28px;
 
-  font-size: 65px;
+  color: var(--accent);
 
-  margin-bottom: 20px;
+  font-family: Georgia, serif;
 
-  animation: heartbeat 1.8s infinite;
+  font-size: 55px;
+
+  line-height: 1;
+
+  animation:
+    heartbeat 2.5s ease-in-out infinite;
 }
 
 
 .heart.big {
-  font-size: 90px;
+  font-size: 82px;
 }
 
 
 @keyframes heartbeat {
 
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
 
-  10% {
-    transform: scale(1.12);
+  8% {
+    transform: scale(1.09);
   }
 
-  20% {
+  16% {
     transform: scale(1);
   }
 
 }
 
 
-/* BUTTONS */
+/* =========================================
+   INTRO BUTTONS
+   ========================================= */
 
 button {
   font-family: inherit;
@@ -162,127 +258,154 @@ button {
 
 .buttons {
   display: flex;
-  gap: 12px;
+
   align-items: center;
+  justify-content: center;
+
+  gap: 14px;
 }
 
 
 .primary,
 .secondary {
+  min-height: 54px;
+
+  padding: 0 29px;
 
   border-radius: 100px;
 
-  padding: 17px 28px;
-
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 
   cursor: pointer;
 
   transition:
-    transform .2s ease,
-    box-shadow .2s ease;
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 
 .primary {
-  border: none;
+  border: 1px solid var(--accent);
 
-  color: white;
+  background: var(--accent);
 
-  background:
-    linear-gradient(
-      135deg,
-      var(--pink),
-      #ef407a
-    );
+  color: #171113;
 
   box-shadow:
-    0 10px 25px
-    rgba(223, 23, 97, .22);
+    0 12px 35px
+    rgba(216, 139, 158, 0.13);
 }
 
 
 .primary:hover {
-  transform:
-    translateY(-3px)
-    scale(1.02);
+  background: var(--accent-light);
+
+  border-color: var(--accent-light);
+
+  transform: translateY(-3px);
 
   box-shadow:
-    0 15px 35px
-    rgba(223, 23, 97, .28);
+    0 17px 40px
+    rgba(216, 139, 158, 0.18);
 }
 
 
 .secondary {
-  border:
-    1px solid var(--border);
+  border: 1px solid var(--border);
 
-  background: white;
+  background: transparent;
 
   color: var(--muted);
 }
 
 
-/* CARDS */
+.secondary:hover {
+  border-color: var(--border-hover);
+
+  color: var(--cream);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   CHOICE AREA
+   ========================================= */
 
 .choices {
-  width: min(1100px, 100%);
+  width: min(1000px, 100%);
 
   display: grid;
 
   grid-template-columns:
     repeat(3, 1fr);
 
-  gap: 22px;
+  gap: 16px;
 
-  margin-top: 15px;
+  margin-top: 8px;
 }
 
 
+/* =========================================
+   CHOICE CARDS
+   ========================================= */
+
 .choice-card {
-  padding: 0;
+  position: relative;
 
   overflow: hidden;
 
-  border:
-    1px solid var(--border);
+  padding: 0;
 
-  border-radius: 24px;
+  border: 1px solid var(--border);
 
-  background: var(--surface);
+  border-radius: 6px;
 
-  text-align: left;
+  background:
+    rgba(255, 255, 255, 0.025);
 
   color: var(--text);
 
+  text-align: left;
+
   cursor: pointer;
 
-  position: relative;
+  backdrop-filter: blur(10px);
 
   transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    border .25s ease;
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 
 .choice-card:hover {
   transform: translateY(-7px);
 
+  border-color: var(--border-hover);
+
+  background:
+    rgba(216, 139, 158, 0.045);
+
   box-shadow: var(--shadow);
 }
 
 
 .choice-card.selected {
-  border:
-    2px solid var(--pink);
-
   transform: translateY(-5px);
 
+  border-color: var(--accent);
+
+  background:
+    rgba(216, 139, 158, 0.08);
+
   box-shadow:
-    0 16px 40px
-    rgba(223, 23, 97, .14);
+    0 18px 50px
+    rgba(0, 0, 0, 0.3);
 }
 
 
@@ -291,61 +414,123 @@ button {
 
   position: absolute;
 
-  top: 15px;
-  right: 15px;
+  top: 16px;
+  right: 16px;
 
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
 
   display: grid;
+
   place-items: center;
 
   border-radius: 50%;
 
-  color: white;
-  background: var(--pink);
+  background: var(--accent);
 
+  color: #181214;
+
+  font-size: 14px;
   font-weight: 700;
 }
 
 
+/* =========================================
+   IMAGE / EMOJI AREA
+   ========================================= */
+
 .image-placeholder {
-  height: 220px;
+  height: 190px;
 
   display: grid;
+
   place-items: center;
 
-  font-size: 70px;
-
   background:
-    linear-gradient(
-      135deg,
-      #fff1f4,
-      #fbe3eb
+    radial-gradient(
+      circle at center,
+      #33272b,
+      #1c1719 70%
+    );
+
+  border-bottom:
+    1px solid var(--border);
+
+  font-size: 55px;
+
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease;
+}
+
+
+.choice-card:hover
+.image-placeholder {
+  background:
+    radial-gradient(
+      circle at center,
+      #422d34,
+      #21191c 70%
     );
 }
 
 
+/* If you replace emojis with actual images later */
+
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.6s
+    cubic-bezier(.22, 1, .36, 1);
+}
+
+
+.choice-card:hover
+.image-placeholder img {
+  transform: scale(1.04);
+}
+
+
+/* =========================================
+   CARD CONTENT
+   ========================================= */
+
 .card-content {
-  padding: 22px;
+  padding: 24px 23px 26px;
 }
 
 
 .card-content span {
-  color: var(--pink);
+  display: block;
 
-  font-size: 11px;
-  font-weight: 700;
+  margin-bottom: 11px;
 
-  letter-spacing: .15em;
+  color: var(--accent);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.22em;
 }
 
 
 .card-content h3 {
-  margin:
-    7px 0 6px;
+  margin: 0 0 8px;
 
-  font-size: 24px;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 27px;
+
+  font-weight: 400;
+
+  letter-spacing: -0.02em;
 }
 
 
@@ -354,157 +539,229 @@ button {
 
   color: var(--muted);
 
-  line-height: 1.5;
+  font-size: 13px;
+
+  line-height: 1.6;
 }
 
+
+/* =========================================
+   NEXT BUTTON
+   ========================================= */
 
 .next {
-  margin-top: 35px;
+  margin-top: 38px;
 }
 
 
-/* DATE */
+/* =========================================
+   DATE PICKER
+   ========================================= */
+
+.date-box {
+  margin-top: 5px;
+}
+
 
 .date-box input {
+  min-width: 270px;
 
-  padding: 18px 22px;
+  padding: 18px 21px;
 
   border:
     1px solid var(--border);
 
-  border-radius: 15px;
+  border-radius: 6px;
 
-  background: white;
+  outline: none;
 
-  color: var(--text);
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color: var(--cream);
+
+  color-scheme: dark;
 
   font-family: inherit;
 
-  font-size: 17px;
+  font-size: 16px;
 
-  outline: none;
+  text-align: center;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 
+.date-box input:hover,
 .date-box input:focus {
-  border-color: var(--pink);
+  border-color: var(--accent);
+
+  background:
+    rgba(216, 139, 158, 0.06);
 }
 
 
-/* FINAL */
+/* =========================================
+   FINAL SUMMARY
+   ========================================= */
 
 .summary {
   width: min(600px, 100%);
 
-  padding: 30px;
-
   display: grid;
 
   grid-template-columns:
-    1fr 1fr;
+    repeat(2, 1fr);
 
-  gap: 25px;
+  margin-top: 5px;
 
-  border:
+  border-top:
     1px solid var(--border);
 
-  border-radius: 25px;
-
-  background: white;
-
-  box-shadow: var(--shadow);
+  border-bottom:
+    1px solid var(--border);
 }
 
 
 .summary div {
+  min-height: 120px;
+
+  padding: 27px 20px;
+
   display: flex;
 
   flex-direction: column;
 
-  gap: 5px;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+}
+
+
+.summary div:nth-child(odd) {
+  border-right:
+    1px solid var(--border);
+}
+
+
+.summary div:nth-child(-n + 2) {
+  border-bottom:
+    1px solid var(--border);
 }
 
 
 .summary span {
-  color: var(--pink);
+  color: var(--accent);
 
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 9px;
+  font-weight: 600;
 
-  letter-spacing: .15em;
+  letter-spacing: 0.2em;
 }
 
 
 .summary strong {
-  font-size: 20px;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 23px;
+
+  font-weight: 400;
 }
 
 
 .made-for {
-  margin-top: 35px;
+  margin-top: 40px;
 
-  color: var(--muted);
+  color: #766c70;
+
+  font-family: Georgia, serif;
 
   font-size: 14px;
+
+  font-style: italic;
 }
 
 
-/* MOBILE */
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #3b3034;
+
+  border-radius: 100px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-dark);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
 
 @media (max-width: 700px) {
 
   .page {
+    min-height: 100svh;
+
     padding:
-      50px 20px;
+      55px 22px;
+  }
+
+
+  .eyebrow {
+    margin-bottom: 18px;
   }
 
 
   h1 {
     font-size:
-      clamp(3rem, 15vw, 4.5rem);
+      clamp(3.6rem, 17vw, 5.5rem);
+
+    line-height: 0.93;
   }
 
 
   h2 {
     font-size:
-      clamp(2.6rem, 12vw, 4rem);
+      clamp(3rem, 14vw, 4.5rem);
+
+    line-height: 0.96;
   }
 
 
-  .choices {
-    display: flex;
+  .subtitle {
+    margin:
+      22px 0 34px;
 
-    width: calc(100vw - 20px);
-
-    overflow-x: auto;
-
-    scroll-snap-type:
-      x mandatory;
-
-    gap: 14px;
-
-    padding:
-      10px 20px 25px;
-  }
-
-
-  .choice-card {
-    min-width: 82vw;
-
-    scroll-snap-align:
-      center;
-  }
-
-
-  .image-placeholder {
-    height: 210px;
+    font-size: 15px;
   }
 
 
   .buttons {
-    flex-direction: column;
-
     width: 100%;
+
+    flex-direction: column;
   }
 
 
@@ -514,9 +771,109 @@ button {
   }
 
 
+  /* Swipeable choices */
+
+  .choices {
+    width:
+      calc(100vw - 10px);
+
+    display: flex;
+
+    gap: 13px;
+
+    padding:
+      8px 22px 25px;
+
+    overflow-x: auto;
+
+    scroll-snap-type:
+      x mandatory;
+
+    scrollbar-width: none;
+  }
+
+
+  .choices::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .choice-card {
+    min-width: 82vw;
+
+    scroll-snap-align: center;
+  }
+
+
+  .image-placeholder {
+    height: 200px;
+  }
+
+
+  .card-content {
+    padding:
+      22px 21px 25px;
+  }
+
+
+  .card-content h3 {
+    font-size: 28px;
+  }
+
+
+  .next {
+    width: calc(100% - 10px);
+
+    margin-top: 25px;
+  }
+
+
   .summary {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
+  }
+
+
+  .summary div {
+    min-height: 95px;
+
+    border-right: none !important;
+
+    border-bottom:
+      1px solid var(--border) !important;
+  }
+
+
+  .summary div:last-child {
+    border-bottom: none !important;
+  }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 390px) {
+
+  .page {
+    padding:
+      45px 17px;
+  }
+
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+
+  h2 {
+    font-size: 3rem;
+  }
+
+
+  .choice-card {
+    min-width: 84vw;
   }
 
 }
