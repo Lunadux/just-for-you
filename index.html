@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A question for you ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main>
+
+  <!-- INTRO -->
+  <section class="page active" id="intro">
+
+    <div class="heart">♡</div>
+
+    <p class="eyebrow">I HAVE A QUESTION</p>
+
+    <h1>
+      Will you go on a<br>
+      date with me?
+    </h1>
+
+    <p class="subtitle">
+      I promise I have a good plan.
+    </p>
+
+    <div class="buttons">
+      <button class="primary" onclick="nextPage()">
+        Yes, of course →
+      </button>
+
+      <button class="secondary" id="noButton">
+        No
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- PART 1 -->
+  <section class="page">
+
+    <p class="eyebrow">PART 1 OF 4</p>
+
+    <h2>What should we do?</h2>
+
+    <p class="subtitle">
+      Pick your favourite.
+    </p>
+
+    <div class="choices">
+
+      <button class="choice-card"
+              data-group="activity"
+              data-value="Dinner">
+
+        <div class="image-placeholder">
+          🍝
+        </div>
+
+        <div class="card-content">
+          <span>OPTION 01</span>
+          <h3>Dinner</h3>
+          <p>Good food, good conversation.</p>
+        </div>
+
+      </button>
+
+
+      <button class="choice-card"
+              data-group="activity"
+              data-value="Arcade">
+
+        <div class="image-placeholder">
+          🎮
+        </div>
+
+        <div class="card-content">
+          <span>OPTION 02</span>
+          <h3>Arcade</h3>
+          <p>Loser buys dessert.</p>
+        </div>
+
+      </button>
+
+
+      <button class="choice-card"
+              data-group="activity"
+              data-value="Surprise">
+
+        <div class="image-placeholder">
+          ✨
+        </div>
+
+        <div class="card-content">
+          <span>OPTION 03</span>
+          <h3>Surprise me</h3>
+          <p>Trust me with this one.</p>
+        </div>
+
+      </button>
+
+    </div>
+
+    <button class="primary next" onclick="nextPage()">
+      Continue →
+    </button>
+
+  </section>
+
+
+  <!-- PART 2 -->
+  <section class="page">
+
+    <p class="eyebrow">PART 2 OF 4</p>
+
+    <h2>What are we eating?</h2>
+
+    <p class="subtitle">
+      Very important question.
+    </p>
+
+    <div class="choices">
+
+      <button class="choice-card"
+              data-group="food"
+              data-value="Italian">
+
+        <div class="image-placeholder">🍕</div>
+
+        <div class="card-content">
+          <span>OPTION 01</span>
+          <h3>Italian</h3>
+          <p>Pizza, pasta and questionable amounts of cheese.</p>
+        </div>
+
+      </button>
+
+
+      <button class="choice-card"
+              data-group="food"
+              data-value="Japanese">
+
+        <div class="image-placeholder">🍣</div>
+
+        <div class="card-content">
+          <span>OPTION 02</span>
+          <h3>Japanese</h3>
+          <p>Sushi sounds pretty good.</p>
+        </div>
+
+      </button>
+
+
+      <button class="choice-card"
+              data-group="food"
+              data-value="Your choice">
+
+        <div class="image-placeholder">👀</div>
+
+        <div class="card-content">
+          <span>OPTION 03</span>
+          <h3>Your choice</h3>
+          <p>You pick. I'll organise it.</p>
+        </div>
+
+      </button>
+
+    </div>
+
+    <button class="primary next" onclick="nextPage()">
+      Continue →
+    </button>
+
+  </section>
+
+
+  <!-- PART 3 -->
+  <section class="page">
+
+    <p class="eyebrow">PART 3 OF 4</p>
+
+    <h2>And afterwards?</h2>
+
+    <p class="subtitle">
+      Assuming you haven't had enough of me yet.
+    </p>
+
+    <div class="choices">
+
+      <button class="choice-card"
+              data-group="after"
+              data-value="Dessert">
+
+        <div class="image-placeholder">🍨</div>
+
+        <div class="card-content">
+          <h3>Dessert</h3>
+          <p>There's always room.</p>
+        </div>
+
+      </button>
+
+
+      <button class="choice-card"
+              data-group="after"
+              data-value="Walk">
+
+        <div class="image-placeholder">🌙</div>
+
+        <div class="card-content">
+          <h3>Night walk</h3>
+          <p>Walk around and talk about everything.</p>
+        </div>
+
+      </button>
+
+
+      <button class="choice-card"
+              data-group="after"
+              data-value="Both">
+
+        <div class="image-placeholder">🤝</div>
+
+        <div class="card-content">
+          <h3>Why not both?</h3>
+          <p>Correct answer, probably.</p>
+        </div>
+
+      </button>
+
+    </div>
+
+    <button class="primary next" onclick="nextPage()">
+      Continue →
+    </button>
+
+  </section>
+
+
+  <!-- PART 4 -->
+  <section class="page">
+
+    <p class="eyebrow">PART 4 OF 4</p>
+
+    <h2>One last thing...</h2>
+
+    <p class="subtitle">
+      When are you free?
+    </p>
+
+    <div class="date-box">
+
+      <input type="date" id="datePicker">
+
+    </div>
+
+    <button class="primary next" onclick="finishDate()">
+      Lock it in ♡
+    </button>
+
+  </section>
+
+
+  <!-- FINAL -->
+  <section class="page" id="final">
+
+    <div class="heart big">♥</div>
+
+    <p class="eyebrow">IT'S OFFICIAL</p>
+
+    <h1>It's a date.</h1>
+
+    <p class="subtitle">
+      Excellent decision, by the way.
+    </p>
+
+    <div class="summary">
+
+      <div>
+        <span>THE PLAN</span>
+        <strong id="summaryActivity">—</strong>
+      </div>
+
+      <div>
+        <span>FOOD</span>
+        <strong id="summaryFood">—</strong>
+      </div>
+
+      <div>
+        <span>AFTER</span>
+        <strong id="summaryAfter">—</strong>
+      </div>
+
+      <div>
+        <span>WHEN</span>
+        <strong id="summaryDate">—</strong>
+      </div>
+
+    </div>
+
+    <p class="made-for">
+      made just for you ♡
+    </p>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
