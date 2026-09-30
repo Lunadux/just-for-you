@@ -3,25 +3,43 @@ const pages =
 
 let currentPage = 0;
 
+let transitioning = false;
+
+
 const answers = {
+
   activity: null,
+
   food: null,
+
   after: null,
+
   date: null
+
 };
 
 
-/* NEXT PAGE */
+/* =========================================
+   NEXT PAGE
+   ========================================= */
 
 function nextPage() {
+
+  if (currentPage >= pages.length - 1) {
+    return;
+  }
+
 
   pages[currentPage]
     .classList.remove("active");
 
+
   currentPage++;
+
 
   pages[currentPage]
     .classList.add("active");
+
 
   window.scrollTo({
     top: 0,
@@ -31,177 +49,269 @@ function nextPage() {
 }
 
 
-/* CARD SELECTION */
+/* =========================================
+   OPTIONS
+   ========================================= */
 
 document
-  .querySelectorAll(".choice-card")
-  .forEach(card => {
+  .querySelectorAll(".option")
+  .forEach(option => {
 
-    card.addEventListener(
+    option.addEventListener(
       "click",
       () => {
 
+        if (transitioning) {
+          return;
+        }
+
+
         const group =
-          card.dataset.group;
+          option.dataset.group;
+
+
+        const value =
+          option.dataset.value;
+
+
+        /* Save answer */
+
+        answers[group] =
+          value;
+
+
+        /* Remove existing selection */
 
         document
           .querySelectorAll(
             `[data-group="${group}"]`
           )
-          .forEach(item =>
+          .forEach(item => {
+
             item.classList.remove(
               "selected"
-            )
-          );
+            );
 
-        card.classList.add(
+          });
+
+
+        /* Select clicked option */
+
+        option.classList.add(
           "selected"
         );
 
-        answers[group] =
-          card.dataset.value;
+
+        transitioning = true;
+
+
+        /* Briefly show selection */
+
+        setTimeout(
+          () => {
+
+            nextPage();
+
+            transitioning = false;
+
+          },
+          550
+        );
 
       }
+
     );
 
   });
 
 
-/* RUNAWAY NO BUTTON */
+/* =========================================
+   MAYBE BUTTON
+   ========================================= */
 
-const noButton =
-  document.getElementById("noButton");
-
-let escapeCount = 0;
-
-const noMessages = [
-  "Are you sure?",
-  "Really? 🤨",
-  "Wrong button",
-  "Try again",
-  "Nice try",
-  "♡"
-];
+const maybeButton =
+  document.getElementById(
+    "maybeButton"
+  );
 
 
-function escapeNoButton() {
+if (maybeButton) {
 
-  escapeCount++;
+  const maybeMessages = [
 
-  noButton.textContent =
-    noMessages[
-      Math.min(
-        escapeCount - 1,
-        noMessages.length - 1
-      )
-    ];
+    "are you sure? 👀",
 
-  noButton.style.position =
-    "fixed";
+    "think about it...",
 
-  const maxX =
-    window.innerWidth -
-    noButton.offsetWidth -
-    20;
+    "I have good taste",
 
-  const maxY =
-    window.innerHeight -
-    noButton.offsetHeight -
-    20;
+    "okay but consider it ♡"
 
-  noButton.style.left =
-    Math.max(
-      20,
-      Math.random() * maxX
-    ) + "px";
+  ];
 
-  noButton.style.top =
-    Math.max(
-      20,
-      Math.random() * maxY
-    ) + "px";
+
+  let maybeCount = 0;
+
+
+  maybeButton.addEventListener(
+    "click",
+    () => {
+
+      maybeButton.textContent =
+        maybeMessages[
+          maybeCount %
+          maybeMessages.length
+        ];
+
+
+      maybeCount++;
+
+    }
+
+  );
 
 }
 
 
-noButton.addEventListener(
-  "mouseenter",
-  escapeNoButton
-);
+/* =========================================
+   FINISH DATE
+   ========================================= */
 
-
-noButton.addEventListener(
-  "touchstart",
-  event => {
-
-    event.preventDefault();
-
-    escapeNoButton();
-
-  }
-);
-
-
-/* FINAL SCREEN */
-
-function finishDate() {
+async function finishDate() {
 
   const dateInput =
     document.getElementById(
       "datePicker"
     );
 
+
   answers.date =
     dateInput.value;
 
 
+  /* Require date */
+
+  if (!answers.date) {
+
+    dateInput.focus();
+
+    return;
+
+  }
+
+
+  /* =====================================
+     SUMMARY
+     ===================================== */
+
   document.getElementById(
     "summaryActivity"
   ).textContent =
-    answers.activity ||
-    "Surprise";
+    answers.activity || "Surprise";
 
 
   document.getElementById(
     "summaryFood"
   ).textContent =
-    answers.food ||
-    "We'll decide";
+    answers.food || "We'll decide";
 
 
   document.getElementById(
     "summaryAfter"
   ).textContent =
-    answers.after ||
-    "We'll see 👀";
+    answers.after || "We'll see";
 
 
-  if (answers.date) {
+  const date =
+    new Date(
+      answers.date +
+      "T00:00:00"
+    );
 
-    const date =
-      new Date(
-        answers.date +
-        "T00:00:00"
-      );
 
-    document.getElementById(
-      "summaryDate"
-    ).textContent =
-      date.toLocaleDateString(
-        "en-AU",
+  document.getElementById(
+    "summaryDate"
+  ).textContent =
+    date.toLocaleDateString(
+      "en-AU",
+      {
+
+        weekday: "long",
+
+        day: "numeric",
+
+        month: "long"
+
+      }
+    );
+
+
+  /* =====================================
+     FORMSPREE
+
+     Add your Formspree endpoint here
+     when you're ready.
+
+     Example:
+
+     https://formspree.io/f/abcdwxyz
+     ===================================== */
+
+
+  const FORMSPREE_URL = "";
+
+
+  if (FORMSPREE_URL) {
+
+    try {
+
+      await fetch(
+        FORMSPREE_URL,
         {
-          day: "numeric",
-          month: "long",
-          year: "numeric"
+
+          method: "POST",
+
+          headers: {
+
+            "Content-Type":
+              "application/json",
+
+            "Accept":
+              "application/json"
+
+          },
+
+
+          body:
+            JSON.stringify({
+
+              activity:
+                answers.activity,
+
+              food:
+                answers.food,
+
+              after:
+                answers.after,
+
+              date:
+                answers.date
+
+            })
+
         }
       );
 
-  } else {
+    }
 
-    document.getElementById(
-      "summaryDate"
-    ).textContent =
-      "TBD";
+    catch (error) {
+
+      console.error(
+        "Couldn't send choices:",
+        error
+      );
+
+    }
 
   }
 
